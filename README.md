@@ -1,20 +1,16 @@
 # Backdoor (Python Project)
 
-
-
 # Modèle Client / Serveur 
 
 
+Dans le cas de notre Backdoor, le modèle Client/Serveur est un peu à redéfinir :
 
+-	Le rôle de la machine A va être d'établir la connection avec le Backdoor, elle est donc considérée comme étant le SERVEUR.
 
+-	Le rôle de la machine B ( Backdoor )  va être de fournir ses services ( par définition elle est aussi a considérée comme 
+"serveur" ) mais sera appelée machine CLIENT.
 
-Dans le cas de notre Backdoor, le modèle Client /Serveur est un peu à redéfinir :
-
--	Le rôle de la machine A va être d’établir la connection avec le Backdoor, elle est donc considérée comme étant le SERVEUR.
-
--	Le rôle de la machine B ( Backdoor )  va être de fournir ses services ( par définition elle est aussi a considérée comme “ serveur “ ) mais sera appelée machine CLIENT.
-
-On a donc ici un modèle de type “hybride“.
+On a donc ici un modèle de type "hybride".
 
 Avantages : 
 
@@ -25,12 +21,12 @@ Le fait d’avoir désigné la machine A comme étant le serveur et donc celle q
 
 # Connection + Encryption
 
-Nous avons opté pour l’utilisation du protocole TCP qui facilite ainsi la gestion du flux sur le réseau, garantit la non perte des paquets et facilite l’écriture du code ainsi que la gestion des sockets.
+Nous avons opté pour l'utilisation du protocole TCP qui facilite ainsi la gestion du flux sur le réseau, garantit la non perte des paquets et facilite l'écriture du code ainsi que la gestion des sockets.
 
 En revanche, le nombre de paquets sur le réseau est un peu plus conséquent.
 
 
-En ce qui concerne l’ encryption, le module SSL fait plus que correctement le travail, il s’occupe de gérer le chiffrement des données grâce à un certificat et offre une authentification des deux partis. 
+En ce qui concerne l'encryption, le module SSL fait plus que correctement le travail, il s'occupe de gérer le chiffrement des données grâce à un certificat et offre une authentification des deux partis. 
 
 python 3 ssl →  https://docs.python.org/3/library/ssl.html
 
@@ -45,7 +41,7 @@ Seul le certificat est utilisé sur la machine infectée.
 
 # Heritage & Thread
 
-Le Reverse Shell ainsi que le Keylogger implémentés ont été défini en tant que “ Threads “ pour pouvoir s’effectuer en parallèle au programme principale. Ils héritent aussi de la classe SecureCommunication qui leur permet de communiquer sur un socket différent de celui par défaut. 
+Le Reverse Shell ainsi que le Keylogger implémentés ont été défini en tant que "Threads" pour pouvoir s’effectuer en parallèle au programme principale. Ils héritent aussi de la classe SecureCommunication qui leur permet de communiquer sur un socket différent de celui par défaut. 
 
 
 # Shell
@@ -66,11 +62,11 @@ Pynput → https://theembeddedlab.com/tutorials/keylogger-python/
 Utilisation du module Scapy qui propose des outils réseaux ( conception de paquets, ... ) qui nous permet de faire un scan global du réseau ou d'une machine spécifique, grâce à l’envoi de requêtes ARP.
 
 
-# Log 
+# Logging 
 
 Utilisation du module logging pour une gestion des logs efficace selon différent niveau de verbosité.
 
-# Arg
+# arguments
 
 En ce qui concerne la gestion des arguments proposant; du côté serveur une aide, un mode verbose ainsi que la possibilité de définir un path personnel pour sauvegarder les logs …
 et du côté client la possibilité de définir l’adresse ip du serveur.
