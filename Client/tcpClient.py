@@ -9,10 +9,10 @@ def main():
     tools.set_log(args.logName, args.notverbose)
     
     while True:
-        secureCommunication = tools.secureCommunication(args.RHOST, args.RPORT) 
-        secureCommunication.secure_connect()
-        tools.echo_service(secureCommunication, args.RHOST, args.logName)
-        secureCommunication.clean_socket()
+        secure_communication = tools.SecureCommunication(args.RHOST, args.RPORT) 
+        secure_communication.secure_connect()
+        tools.echo_service(secure_communication, args.RHOST, args.logName)
+        secure_communication.clean_socket()
 
 
 if __name__ == "__main__":

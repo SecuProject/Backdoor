@@ -17,7 +17,6 @@ def set_log(log_name, is_not_verbose):
         level_log = logging.ERROR
     else:
         level_log = logging.INFO
-
     log_name.lstrip()
 
     log_format = '[%(asctime)-15s] [%(levelname)s] %(message)s'

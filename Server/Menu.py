@@ -10,7 +10,6 @@ import time
 def main_menu(secure_communication, ip, log_file_name, is_keylogger_on):
     msg_menu = "\n" + getpass.getuser() + "@"+ip+" # "
     is_exit = False
-
     while not is_exit:
         try:
             user_choice = input(msg_menu)
