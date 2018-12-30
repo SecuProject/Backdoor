@@ -8,9 +8,9 @@
 
 Dans le cas de notre Backdoor, le modèle Client/Serveur est un peu à redéfinir :
 
--	Le rôle de la machine A va être d'établir la connection avec le Backdoor, elle est donc considérée comme étant le SERVEUR.
+- Le rôle de la machine A va être d'établir la connection avec le Backdoor, elle est donc considérée comme étant le SERVEUR.
 
--	Le rôle de la machine B ( Backdoor )  va être de fournir ses services ( par définition elle est aussi a considérée comme 
+- Le rôle de la machine B ( Backdoor )  va être de fournir ses services ( par définition elle est aussi a considérée comme 
 "serveur" ) mais sera appelée machine CLIENT.
 
 On a donc ici un modèle de type "hybride".
@@ -19,7 +19,12 @@ Avantages :
 
 Le fait d’avoir désigné la machine A comme étant le serveur et donc celle qui établi la connection nous permet de n’avoir qu’à définir notre propre IP avant de déployer le backdoor dans un réseau.
 
-
+# Fonctions présentes
+- Reverse Shell
+- Keylogger
+- Scan réseau ( Scapy )
+- Gestion des logs ( client, serveur, keylogger )
+- Upload & Download
 
 
 # Connection + Encryption
@@ -68,6 +73,9 @@ Utilisation du module Scapy qui propose des outils réseaux ( conception de paqu
 # Logging 
 
 Utilisation du module logging pour une gestion des logs efficace selon différent niveau de verbosité.
+Trois fichiers de log sont présents, un pour le client, un pour le serveur et le dernier pour le
+keylogger.
+Une fonction clear_log permet de supprimer les logs existants.
 
 # Arguments
 
