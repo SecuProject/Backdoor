@@ -1,6 +1,6 @@
 # Backdoor (Python Project)
 
-
+![alt text](https://github.com/SecuProject/Backdoor/blob/master/shema.jpg)
 
 
 # Modèle Client / Serveur 
