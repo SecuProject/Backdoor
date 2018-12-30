@@ -66,7 +66,7 @@ Utilisation du module Scapy qui propose des outils réseaux ( conception de paqu
 
 Utilisation du module logging pour une gestion des logs efficace selon différent niveau de verbosité.
 
-# arguments
+# Arguments
 
 En ce qui concerne la gestion des arguments proposant; du côté serveur une aide, un mode verbose ainsi que la possibilité de définir un path personnel pour sauvegarder les logs …
 et du côté client la possibilité de définir l’adresse ip du serveur.
